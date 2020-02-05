@@ -1,4 +1,5 @@
 import Foundation
+import Fluent
 import FluentMySQL
 import Vapor
 import Authentication

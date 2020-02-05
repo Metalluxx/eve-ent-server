@@ -15,25 +15,38 @@ let package = Package(
     ],
     
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor", from: Version(3, 0, 0)),
-        .package(url: "https://github.com/vapor/routing.git", from: Version(3, 0, 0)),
+        .package(
+            url: "https://github.com/vapor/vapor",
+            from: Version(3, 0, 0)),
+        .package(
+            url: "https://github.com/vapor/routing.git",
+            from: Version(3, 0, 0)),
         
         // Auth
-        .package(url: "https://github.com/vapor/auth.git", from: Version(2, 0, 0)),
-        .package(url: "https://github.com/vapor/crypto.git", from: Version(3, 0, 0)),
+        .package(
+            url: "https://github.com/vapor-community/Imperial.git",
+            from: Version(0, 5, 3)),
+        .package(
+            url: "https://github.com/vapor/auth.git",
+            from: Version(2, 0, 0)),
+        .package(
+            url: "https://github.com/vapor/crypto.git",
+            from: Version(3, 0, 0)),
         
         // Database
-        .package(url: "https://github.com/vapor/fluent-mysql-driver", from: Version(3, 0, 0)),
+        .package(
+            url: "https://github.com/vapor/fluent-mysql-driver",
+            from: Version(3, 0, 0)),
     ],
     targets: [
+        .target(
+            name: "Auth",
+            dependencies: ["Routing", "Vapor", "Authentication", "FluentMySQL", "Crypto"]),
         .target(
             name: "Run",
             dependencies: ["Server"]),
         .target(
             name: "Server",
-            dependencies: ["Routing", "Vapor", "Authentication", "FluentMySQL", "Crypto"]),
-        .testTarget(
-            name: "ServerTests",
-            dependencies: ["Server"]),
+            dependencies: ["Auth", "Routing", "Vapor", "Authentication", "FluentMySQL", "Crypto"]),
     ]
 )

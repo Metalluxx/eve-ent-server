@@ -21,6 +21,7 @@ public func configure(
     // Database
     try services.register(FluentMySQLProvider())
     try services.register(MySQLProvider())
+    try services.register(AuthProvider())
     
     let sqlServerConfig = MySQLDatabaseConfig(
         hostname: "45.84.1.115",
